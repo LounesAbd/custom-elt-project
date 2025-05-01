@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: films
+    description: "A description of what this model represents."
+    columns:
+      - name: column_name
+        description: "A description of this column."
+        tests:
+          - not_null
+          - unique
+      - name: another_column_name
+        description: "fff"
+        tests:
+          - not_null
+
+  - name: actors
+    description: "A description of what this model represents."
+    columns:
+      - name: column_name
+        description: "A description of this column."
+        tests:
+          - not_null
+          - unique
+      - name: another_column_name
+        description: "fff"
+        tests:
+          - not_null
+
+  - name: films_actors
+    description: "fff"
+    columns:
+      - name: a
+        description: "fff"
+        tests:
+          - not-null
+          - unique
+
