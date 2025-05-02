@@ -24,6 +24,11 @@ services:
       POSTGRES_DB: destination_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d destination_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   elt_script:
     build:
@@ -38,21 +43,23 @@ services:
 
   dbt:
     image: ghcr.io/dbt-labs/dbt-postgres:1.5.0
-    command:
-      [
-        "run",
-        "--profiles-dir",
-        "/root",
-        "--project-dir",
-        "/dbt"
-      ]
+    command: [
+      "run",
+      "--profiles-dir",
+      "/root",
+      "--project-dir",
+      "/dbt"
+    ]
     networks:
       - elt_network
     volumes:
       - ./custom_postgres:/dbt
       - ~/.dbt:/root
     depends_on:
-      - elt_script
+      elt_script:
+        condition: service_completed_successfully
+      destination_postgres:
+        condition: service_healthy
     environment:
       DBT_PROFILE : default
       DBT_TARGET : dev
