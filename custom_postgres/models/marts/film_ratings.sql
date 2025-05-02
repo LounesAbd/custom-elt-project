@@ -24,7 +24,7 @@ films_with_actors AS (
     FROM
         {{ ref('films') }} AS f
     LEFT JOIN
-        {{ ref('films_actors') }} AS fa ON f.film_id = a.film_id
+        {{ ref('film_actors') }} AS fa ON f.film_id = a.film_id
     LEFT JOIN
         {{ ref('actors') }} AS a ON fa.actor_id = a.actor_id
     GROUP BY

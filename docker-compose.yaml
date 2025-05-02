@@ -54,8 +54,8 @@ services:
     depends_on:
       - elt_script
     environment:
-      - DBT_PROFILE : default
-      - DBT_TARGET : dev
+      DBT_PROFILE : default
+      DBT_TARGET : dev
 
 networks:
   elt_network:

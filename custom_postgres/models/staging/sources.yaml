@@ -10,5 +10,5 @@ sources:
         description: "Table containing films information"
       - name: actors
         description: "Table containing actors information"
-      - name: films_actors
+      - name: film_actors
         description: "Table linking films and actors that featured in them"

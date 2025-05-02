@@ -2,37 +2,58 @@ version: 2
 
 models:
   - name: films
-    description: "A description of what this model represents."
+    description: "List of all the films in the database"
     columns:
-      - name: column_name
-        description: "A description of this column."
+      - name: film_id
+        description: "Film unique identifier"
+        type: INTEGER
         tests:
           - not_null
           - unique
-      - name: another_column_name
-        description: "fff"
+      - name: title
+        description: "Film title"
+        type: VARCHAR(255)
         tests:
           - not_null
+      - name: release_date
+        description: "Film release date"
+        type: DATE
+      - name: price
+        description: "Price to see the film"
+        type: NUMERIC(5,2)
+      - name: rating
+        description: "Film public rating"
+        type: VARCHAR(10)
+      - name: user_rating
+        description: "Film user ratings from 1 to 5"
+        type: NUMERIC(2,1)
 
   - name: actors
     description: "A description of what this model represents."
     columns:
-      - name: column_name
-        description: "A description of this column."
+      - name: actor_id
+        description: "Actor unique identifier"
+        type: INTEGER
         tests:
           - not_null
           - unique
-      - name: another_column_name
-        description: "fff"
+      - name: actor_name
+        description: "Actor's full name"
+        type: VARCHAR(255)
         tests:
           - not_null
 
-  - name: films_actors
-    description: "fff"
+  - name: film_actors
+    description: "Mapping of actors to films"
     columns:
-      - name: a
-        description: "fff"
+      - name: film_id
+        description: "Film unique identifier"
+        type: INTEGER
         tests:
           - not-null
-          - unique
+      - name: actor_id
+        description: "Actor unique identifier"
+        type: INTEGER
+        tests:
+          - not-null
 
